@@ -39,6 +39,4 @@ Monitoramento 24/7 pelo app
 
 ### Contato
 
-**Tel:** (21) 99548-8533
-**Email:** contato@liberdade.solar
 **Local:** Rio de Janeiro, Brasil
