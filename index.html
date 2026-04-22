@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0b1020" />
+  <meta name="description" content="Liberdade Solar — energia solar para condominios, sem investimento, com economia garantida." />
+  <title>Liberdade Solar — Perfil</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='12' fill='%23fbbf24'/%3E%3Cg stroke='%23fbbf24' stroke-width='4' stroke-linecap='round'%3E%3Cline x1='32' y1='6' x2='32' y2='14'/%3E%3Cline x1='32' y1='50' x2='32' y2='58'/%3E%3Cline x1='6' y1='32' x2='14' y2='32'/%3E%3Cline x1='50' y1='32' x2='58' y2='32'/%3E%3Cline x1='13' y1='13' x2='19' y2='19'/%3E%3Cline x1='45' y1='45' x2='51' y2='51'/%3E%3Cline x1='13' y1='51' x2='19' y2='45'/%3E%3Cline x1='45' y1='19' x2='51' y2='13'/%3E%3C/g%3E%3C/svg%3E" />
+  <style>
+    :root {
+      --bg: #0b1020;
+      --bg-2: #111936;
+      --surface: rgba(255, 255, 255, 0.04);
+      --border: rgba(255, 255, 255, 0.08);
+      --text: #e6ecff;
+      --muted: #94a3b8;
+      --accent: #fbbf24;
+      --accent-2: #34d399;
+      --radius: 16px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      background:
+        radial-gradient(1200px 600px at 80% -10%, rgba(251, 191, 36, 0.12), transparent 60%),
+        radial-gradient(900px 500px at -10% 20%, rgba(52, 211, 153, 0.10), transparent 60%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 48px 24px 64px;
+    }
+
+    header.hero {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 32px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      backdrop-filter: blur(12px);
+    }
+
+    .avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #fde68a, #f59e0b 60%, #b45309 100%);
+      display: grid;
+      place-items: center;
+      font-size: 56px;
+      flex-shrink: 0;
+      box-shadow: 0 0 60px rgba(251, 191, 36, 0.35);
+    }
+
+    .hero-text { flex: 1; min-width: 260px; }
+
+    h1 {
+      margin: 0 0 6px;
+      font-size: 32px;
+      letter-spacing: -0.02em;
+    }
+
+    .tagline {
+      color: var(--muted);
+      margin: 0 0 14px;
+      font-size: 16px;
+    }
+
+    .badges {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      font-size: 12px;
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .badge.accent { color: var(--accent); border-color: rgba(251, 191, 36, 0.4); }
+    .badge.green { color: var(--accent-2); border-color: rgba(52, 211, 153, 0.4); }
+
+    section {
+      margin-top: 40px;
+    }
+
+    h2 {
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin: 0 0 16px;
+      font-weight: 600;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+    }
+
+    .stat {
+      padding: 20px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+
+    .stat .value {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .stat .label {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 4px;
+    }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+      counter-reset: step;
+    }
+
+    .step {
+      position: relative;
+      padding: 20px 20px 20px 56px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+
+    .step::before {
+      counter-increment: step;
+      content: counter(step);
+      position: absolute;
+      left: 16px;
+      top: 18px;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(251, 191, 36, 0.15);
+      color: var(--accent);
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      font-size: 14px;
+      border: 1px solid rgba(251, 191, 36, 0.4);
+    }
+
+    .step strong { display: block; margin-bottom: 2px; }
+    .step span { color: var(--muted); font-size: 14px; }
+
+    .team {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 12px;
+    }
+
+    .member {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      padding: 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.15s ease, transform 0.15s ease;
+    }
+
+    .member:hover {
+      border-color: rgba(251, 191, 36, 0.4);
+      transform: translateY(-1px);
+    }
+
+    .member .initials {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #34d399, #0ea5e9);
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
+    .member .name { font-weight: 600; }
+    .member .role { color: var(--muted); font-size: 13px; }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .link {
+      padding: 10px 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 14px;
+      transition: background 0.15s ease, border-color 0.15s ease;
+    }
+
+    .link:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(251, 191, 36, 0.4);
+    }
+
+    .link.primary {
+      background: var(--accent);
+      color: #1a1200;
+      border-color: var(--accent);
+      font-weight: 600;
+    }
+
+    .link.primary:hover { background: #fcd34d; }
+
+    footer {
+      margin-top: 56px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 13px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    @media (max-width: 520px) {
+      header.hero { padding: 24px; gap: 20px; }
+      .avatar { width: 88px; height: 88px; font-size: 40px; }
+      h1 { font-size: 26px; }
+      .container { padding: 24px 16px 48px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <div class="avatar" aria-hidden="true">☀️</div>
+      <div class="hero-text">
+        <h1>Liberdade Solar</h1>
+        <p class="tagline">Energia solar para condominios — sem investimento, com economia garantida.</p>
+        <div class="badges">
+          <span class="badge accent">Rio de Janeiro, BR</span>
+          <span class="badge green">Economia de ~20%</span>
+          <span class="badge">Financiamento 100% proprio</span>
+        </div>
+      </div>
+    </header>
+
+    <section>
+      <h2>Impacto</h2>
+      <div class="stats">
+        <div class="stat">
+          <div class="value">~20%</div>
+          <div class="label">Economia media na conta de luz</div>
+        </div>
+        <div class="stat">
+          <div class="value">R$ 0</div>
+          <div class="label">Custo de instalacao para o condominio</div>
+        </div>
+        <div class="stat">
+          <div class="value">24/7</div>
+          <div class="label">Monitoramento pelo app</div>
+        </div>
+        <div class="stat">
+          <div class="value">Dia 1</div>
+          <div class="label">Quando a economia comeca</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Como funciona</h2>
+      <div class="flow">
+        <div class="step">
+          <strong>Visita tecnica</strong>
+          <span>Avaliacao gratuita do condominio.</span>
+        </div>
+        <div class="step">
+          <strong>Instalacao</strong>
+          <span>Micro-rede solar sem custo para o condominio.</span>
+        </div>
+        <div class="step">
+          <strong>Economia</strong>
+          <span>Reducao imediata na conta de luz dos moradores.</span>
+        </div>
+        <div class="step">
+          <strong>Monitoramento</strong>
+          <span>Acompanhe geracao e economia pelo app.</span>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Tecnologia</h2>
+      <div class="stats">
+        <div class="stat">
+          <div class="value">Claude</div>
+          <div class="label">Assistente IA para moradores, sindicos e parceiros</div>
+        </div>
+        <div class="stat">
+          <div class="value">SSE</div>
+          <div class="label">Streaming de respostas em tempo real</div>
+        </div>
+        <div class="stat">
+          <div class="value">PWA</div>
+          <div class="label">Funciona como app no celular</div>
+        </div>
+        <div class="stat">
+          <div class="value">Vercel</div>
+          <div class="label">Deploy automatico via GitHub</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Equipe</h2>
+      <div class="team">
+        <a class="member" href="https://github.com/fradomnt" target="_blank" rel="noopener">
+          <div class="initials">FM</div>
+          <div>
+            <div class="name">Frado Monteiro</div>
+            <div class="role">Desenvolvimento, Design e UX</div>
+          </div>
+        </a>
+        <a class="member" href="https://github.com/tomjandera" target="_blank" rel="noopener">
+          <div class="initials">TM</div>
+          <div>
+            <div class="name">Tom Monteiro</div>
+            <div class="role">Cybersecurity</div>
+          </div>
+        </a>
+        <div class="member" aria-label="Jonas Maia">
+          <div class="initials">JM</div>
+          <div>
+            <div class="name">Jonas Maia</div>
+            <div class="role">Banco de dados</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Projetos e links</h2>
+      <div class="links">
+        <a class="link primary" href="https://github.com/Liberdadesolar/liberdade-solar-assistente" target="_blank" rel="noopener">Assistente IA</a>
+        <a class="link" href="https://github.com/Liberdadesolar" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </section>
+
+    <footer>
+      <span>© <span id="year"></span> Liberdade Solar</span>
+      <span>Rio de Janeiro, Brasil</span>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
