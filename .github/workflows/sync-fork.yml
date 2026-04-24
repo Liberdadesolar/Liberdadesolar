@@ -1,0 +1,52 @@
+# Sync Fork From Upstream (Liberdade Solar — Defesa em profundidade)
+#
+# SO roda em FORKS. No repo upstream (Liberdadesolar/deye) o `if` abaixo
+# impede execucao. No fork (ex: fradomnt/deye) roda diariamente pra
+# manter o backup sincronizado.
+#
+# PROTECAO ANTI-SABOTAGEM:
+# - Usa `gh repo sync --force=false` → SO aceita fast-forward merges.
+# - Se alguem fizer force-push / reset hard no upstream apagando
+#   historico, o fork NAO propaga. Mantem historico intacto.
+# - Fork vira backup imutavel do historico real do projeto.
+#
+# TRIGGER:
+# - Cron diario 06:00 UTC (03:00 Brasilia)
+# - Manual via workflow_dispatch (botao "Run workflow" no GitHub)
+
+name: Sync fork from upstream
+
+on:
+  schedule:
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+
+jobs:
+  sync:
+    # So roda em forks — nao executa no proprio repo upstream.
+    if: github.repository != 'Liberdadesolar/deye'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout fork
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Sync from upstream (fast-forward only)
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "Repo: ${{ github.repository }}"
+          echo "Upstream: Liberdadesolar/deye"
+          echo "Syncing with --force=false (fast-forward merges only)..."
+          gh repo sync "${{ github.repository }}" \
+            --source Liberdadesolar/deye \
+            --force=false
+
+      - name: Report status
+        if: always()
+        run: |
+          echo "Sync completo as $(date -u +%Y-%m-%dT%H:%M:%SZ) UTC"
+          echo "Se sync falhou, historico do upstream divergiu — verificar manualmente."
