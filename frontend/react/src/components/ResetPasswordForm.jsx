@@ -114,7 +114,7 @@ const ResetPasswordForm = ({ token }) => {
                 required
               />
               <button type="button" className="toggle-password" onClick={() => setShowPassword((v) => !v)} aria-label={showPassword ? 'Ocultar senha' : 'Mostrar senha'}>
-                <EyeIcon off={showPassword} />
+                <EyeIcon off={!showPassword} />
               </button>
             </div>
           </div>
@@ -132,7 +132,7 @@ const ResetPasswordForm = ({ token }) => {
                 required
               />
               <button type="button" className="toggle-password" onClick={() => setShowConfirm((v) => !v)} aria-label={showConfirm ? 'Ocultar senha' : 'Mostrar senha'}>
-                <EyeIcon off={showConfirm} />
+                <EyeIcon off={!showConfirm} />
               </button>
             </div>
           </div>
