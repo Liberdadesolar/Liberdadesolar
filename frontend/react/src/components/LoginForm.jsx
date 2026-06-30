@@ -7,6 +7,7 @@ const REDIRECT_URL = import.meta.env.VITE_REDIRECT_URL || '/dashboard';
 const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -82,15 +83,36 @@ const LoginForm = () => {
           </div>
           <div className="field">
             <label className="label" htmlFor="password-input">Senha</label>
-            <input
-              type="password"
-              className="input"
-              id="password-input"
-              placeholder="Sua senha"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
+            <div className="password-wrap">
+              <input
+                type={showPassword ? 'text' : 'password'}
+                className="input"
+                id="password-input"
+                placeholder="Sua senha"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+              <button
+                type="button"
+                className="toggle-password"
+                onClick={() => setShowPassword((v) => !v)}
+                aria-label={showPassword ? 'Ocultar senha' : 'Mostrar senha'}
+              >
+                {showPassword ? (
+                  <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c6.5 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68" />
+                    <path d="M6.61 6.61A13.5 13.5 0 0 0 2 12s3.5 7 10 7a9.74 9.74 0 0 0 5.39-1.61" />
+                    <line x1="2" y1="2" x2="22" y2="22" />
+                  </svg>
+                ) : (
+                  <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z" />
+                    <circle cx="12" cy="12" r="3" />
+                  </svg>
+                )}
+              </button>
+            </div>
           </div>
           <p className="page-link">
             <a className="page-link-label">Esqueceu a senha?</a>
@@ -201,6 +223,28 @@ const StyledWrapper = styled.div`
   }
 
   .input::placeholder { color: #c4b8ad; }
+
+  .password-wrap { position: relative; display: flex; }
+  .password-wrap .input { width: 100%; padding-right: 46px; }
+
+  .toggle-password {
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: 0;
+    padding: 7px;
+    margin: 0;
+    cursor: pointer;
+    color: var(--ls-muted);
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+  }
+
+  .toggle-password:hover { color: var(--ls-blue); }
+  .toggle-password:focus-visible { outline: 2px solid var(--ls-orange); outline-offset: 1px; }
 
   .input:focus {
     border-color: var(--ls-orange);
