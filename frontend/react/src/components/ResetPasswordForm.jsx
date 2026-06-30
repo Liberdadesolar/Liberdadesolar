@@ -16,7 +16,7 @@ const EyeIcon = ({ off }) =>
     </svg>
   );
 
-const REDIRECT_URL = '/login';
+const REDIRECT_URL = '/senha-alterada';
 
 const ResetPasswordForm = ({ token }) => {
   const resetToken = token || new URLSearchParams(window.location.search).get('token');
