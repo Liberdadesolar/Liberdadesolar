@@ -13,7 +13,8 @@ body {
   justify-content: center;
   padding: 20px;
   font-family: "Sora", system-ui, sans-serif;
+  /* degrade quente do branding: areia -> amarelo -> coral claro */
   background:
-    radial-gradient(1200px 600px at 50% -10%, #ffe2cc 0%, transparent 60%),
-    linear-gradient(160deg, #fff7ef 0%, #ffe9d6 55%, #ffd9b8 100%);
+    radial-gradient(1100px 560px at 50% -8%, #ffe7c6 0%, transparent 60%),
+    linear-gradient(160deg, #f7edd8 0%, #ffe9c8 52%, #ffd6b2 100%);
 }
