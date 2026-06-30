@@ -1,72 +1,40 @@
-# Login Template — Liberdade Solar
+# Login Kit — Liberdade Solar
 
-Template de tela de login com autenticação PocketBase integrada.  
-Design: [Uiverse.io by akshat-patel28](https://uiverse.io/akshat-patel28/rare-cobra-61)
+Telas de autenticação branded (login + recuperação de senha) para os sistemas internos da Liberdade Solar.
+Backend: **PocketBase**. E-mail: **Resend**. Design: cartela oficial (ver [`BRAND.md`](BRAND.md)).
 
-Disponível em duas versões: **HTML puro** e **React + Vite**.
+> **Filosofia:** rosto compartilhado, cérebro independente. Cada projeto usa o mesmo visual, mas aponta para o **seu próprio** backend. Ver [`docs/PLAN.md`](docs/PLAN.md).
 
----
+## As 5 telas
 
-## Versão HTML (`html/`)
+| # | Tela | HTML | React |
+|---|------|------|-------|
+| 1 | Login | `html/index.html` | `react/LoginForm.jsx` |
+| 2 | Esqueci a senha | `html/esqueci-senha.html` | `react/ForgotPasswordForm.jsx` |
+| 3 | Verifique o e-mail | `html/verifique-email.html` | `react/VerifyEmail.jsx` |
+| 4 | Nova senha | `html/nova-senha.html` | `react/ResetPasswordForm.jsx` |
+| 5 | Senha alterada | `html/senha-alterada.html` | `react/PasswordResetSuccess.jsx` |
 
-Arquivo único, zero dependências. Ideal para projetos simples ou integração avulsa.
+Fluxo: **login** → (esqueci) → **esqueci a senha** → e-mail → **nova senha** → **senha alterada** → login.
 
-### Como usar
+## Como usar
 
-1. Copie `html/index.html` para o seu projeto
-2. Edite as duas variáveis no topo do arquivo:
-   ```js
-   const PB_URL = 'https://seu-pocketbase.exemplo.com';
-   const REDIRECT_URL = '/dashboard';
-   ```
-3. Abra no browser:
-   ```bash
-   npx serve .
-   # acesse http://localhost:3000
-   ```
+### HTML puro
+1. Copie os arquivos de `html/`.
+2. Em cada um, edite no topo: `const PB_URL = 'https://SEU_POCKETBASE'`.
+3. Sirva: `npx serve html/`.
 
----
+### React
+1. Copie `react/` para `src/components/` e crie `src/lib/pb.js` com a instância PocketBase.
+2. `.env`: `VITE_PB_URL=https://SEU_POCKETBASE`.
+3. Roteie as telas (ex: `/login`, `/esqueci-senha`, `/nova-senha`, `/senha-alterada`).
 
-## Versão React (`react/`)
+## Backend (e-mail)
+O fluxo de reset depende de SMTP no PocketBase. Já configurado com Resend (`smtp.resend.com:465`).
+Para produção: verificar o domínio no Resend e apontar o template de reset para a tela `nova-senha?token=`. Ver [`docs/VERIFICATION-REPORT.md`](docs/VERIFICATION-REPORT.md).
 
-React 18 + Vite + styled-components + PocketBase SDK.  
-Ideal para projetos que já usam React.
-
-### Como usar
-
-1. Copie a pasta `react/` para o seu projeto
-2. Copie `.env.example` para `.env` e configure:
-   ```
-   VITE_PB_URL=https://seu-pocketbase.exemplo.com
-   VITE_REDIRECT_URL=/dashboard
-   ```
-3. Instale e rode:
-   ```bash
-   npm install
-   npm run dev
-   ```
-
-### Estrutura
-```
-react/
-├── src/
-│   ├── lib/pb.js            ← instância PocketBase (edite aqui a URL)
-│   ├── components/
-│   │   └── LoginForm.jsx    ← componente principal com auth
-│   ├── App.jsx
-│   └── main.jsx
-├── .env.example             ← variáveis de ambiente
-└── package.json
-```
-
----
-
-## Autenticação PocketBase
-
-Ambas as versões usam `pb.collection('users').authWithPassword(email, password)`.
-
-- Token salvo automaticamente no `localStorage` pelo SDK
-- Para checar se o usuário está logado: `pb.authStore.isValid`
-- Para logout: `pb.authStore.clear()`
-
-O nome da coleção (`users`) pode ser alterado conforme o schema do seu PocketBase.
+## Docs
+- [`docs/SPEC.md`](docs/SPEC.md) — o quê e por quê
+- [`docs/PLAN.md`](docs/PLAN.md) — arquitetura e decisões
+- [`docs/VERIFICATION-REPORT.md`](docs/VERIFICATION-REPORT.md) — status verificado
+- [`BRAND.md`](BRAND.md) — cartela de cores oficial
