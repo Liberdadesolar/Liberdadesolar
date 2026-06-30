@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap');
+
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -9,6 +11,9 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 50%, #bbf7d0 100%);
-  font-family: system-ui, sans-serif;
+  padding: 20px;
+  font-family: "Sora", system-ui, sans-serif;
+  background:
+    radial-gradient(1200px 600px at 50% -10%, #ffe2cc 0%, transparent 60%),
+    linear-gradient(160deg, #fff7ef 0%, #ffe9d6 55%, #ffd9b8 100%);
 }
