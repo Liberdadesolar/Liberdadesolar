@@ -37,7 +37,13 @@ Use este arquivo como referência de marca para qualquer projeto do ecossistema 
 
 - **Sora** — fonte principal (Google Fonts). Pesos: 400, 500, 600, 700, 800.
 
-## Tokens CSS (já aplicados na tela de login)
+## Implementação (fonte única — evita inconsistência)
+
+Para qualquer projeto novo, **use os arquivos canônicos** em vez de copiar hex solto:
+- **`tokens.css`** — variáveis CSS da marca. Em HTML: `<link rel="stylesheet" href="tokens.css">`
+- **`react/theme.js`** — os mesmos tokens em JS, para React/styled-components.
+
+> Regra de ouro: mudou a marca? Mude **só** em `tokens.css` / `theme.js` (e aqui no `BRAND.md`). Nunca hardcode cor nova direto na tela.
 
 ```css
 :root {
