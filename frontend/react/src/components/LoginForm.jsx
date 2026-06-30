@@ -166,7 +166,7 @@ const StyledWrapper = styled.div`
   .title {
     text-align: center;
     margin: 0 0 22px 0;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 400;
     color: var(--ls-blue);
   }
