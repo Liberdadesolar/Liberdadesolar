@@ -1,5 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap');
 
+/* Tokens da marca — valores canônicos em frontend/tokens.css e BRAND.md */
+:root {
+  --ls-orange: #f44a00;
+  --ls-orange-dark: #ce3703;
+  --ls-blue: #004b6d;
+  --ls-sand: #ece2cb;
+  --ls-yellow: #ffe575;
+  --ls-ink: #004b6d;
+  --ls-muted: #6a8893;
+  --ls-border: #e6dcc8;
+  --ls-font: "Sora", system-ui, sans-serif;
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -12,7 +25,7 @@ body {
   align-items: center;
   justify-content: center;
   padding: 20px;
-  font-family: "Sora", system-ui, sans-serif;
+  font-family: var(--ls-font);
   /* degrade quente do branding: areia -> amarelo -> coral claro */
   background:
     radial-gradient(1100px 560px at 50% -8%, #ffe7c6 0%, transparent 60%),
