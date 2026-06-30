@@ -1,0 +1,33 @@
+/* ============================================================
+   Liberdade Solar — Design Tokens (FONTE ÚNICA)
+   Cartela oficial: https://www.liberdade.solar/brandbook/cartela-de-cores
+   Documentação completa: ver BRAND.md
+   Uso em HTML:  <link rel="stylesheet" href="tokens.css">
+   ============================================================ */
+:root {
+  /* Cores principais (cartela oficial) */
+  --ls-orange: #f44a00;        /* PRINCIPAL — Pantone Orange 021 U */
+  --ls-sand:   #ece2cb;        /* areia — Pantone 7527 U */
+  --ls-blue:   #004b6d;        /* azul-marinho — Pantone 3025 C */
+  --ls-yellow: #ffe575;        /* amarelo — Pantone 2003 U */
+
+  /* Subtons (liberdade criativa) */
+  --ls-orange-dark: #ce3703;   /* hover / laranja escuro */
+  --ls-coral:  #ff8865;
+  --ls-lilac:  #edd3ff;
+  --ls-green:  #d6ecd7;
+
+  /* Derivados de uso */
+  --ls-ink:      #004b6d;       /* tinta de texto = azul-marinho (NUNCA preto) */
+  --ls-muted:    #6a8893;       /* texto secundário */
+  --ls-border:   #e6dcc8;       /* bordas (derivado da areia) */
+  --ls-field-bg: #fffaf6;       /* fundo de input */
+
+  /* Tipografia */
+  --ls-font: "Sora", system-ui, sans-serif;
+
+  /* Degradê de fundo (quente, do branding) */
+  --ls-bg:
+    radial-gradient(1100px 560px at 50% -8%, #ffe7c6 0%, transparent 60%),
+    linear-gradient(160deg, #f7edd8 0%, #ffe9c8 52%, #ffd6b2 100%);
+}
