@@ -25,20 +25,6 @@ const LoginForm = () => {
 
   return (
     <StyledWrapper>
-      {/* raios geometricos (elemento da marca) */}
-      <svg className="sun-rays" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <g fill="none" stroke="#f44a00" strokeWidth={1.2} strokeLinecap="round">
-          <line x1="50" y1="50" x2="50" y2="2" />
-          <line x1="50" y1="50" x2="82" y2="8" />
-          <line x1="50" y1="50" x2="98" y2="50" />
-          <line x1="50" y1="50" x2="82" y2="92" />
-          <line x1="50" y1="50" x2="18" y2="8" />
-          <line x1="50" y1="50" x2="2" y2="50" />
-          <line x1="50" y1="50" x2="18" y2="92" />
-          <line x1="50" y1="50" x2="50" y2="98" />
-        </g>
-      </svg>
-
       <div className="form-container">
         <div className="brand">
           {/* Logo Liberdade Solar com tagline "o sol nasce pra todos." */}
@@ -148,23 +134,14 @@ const LoginForm = () => {
 };
 
 const StyledWrapper = styled.div`
-  --ls-orange: #f44a00;
-  --ls-orange-dark: #d63f00;
-  --ls-ink: #2b2118;
-  --ls-muted: #8a7f76;
-  --ls-border: #ecdfd5;
-
-  .sun-rays {
-    position: fixed;
-    top: -200px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 560px;
-    height: 560px;
-    pointer-events: none;
-    opacity: 0.28;
-    z-index: 0;
-  }
+  --ls-orange: #f44a00;       /* principal */
+  --ls-orange-dark: #ce3703;  /* subton oficial (hover) */
+  --ls-blue: #004b6d;         /* azul-marinho oficial */
+  --ls-sand: #ece2cb;         /* areia oficial */
+  --ls-yellow: #ffe575;       /* amarelo oficial */
+  --ls-ink: #004b6d;          /* tinta = azul-marinho (sem preto) */
+  --ls-muted: #6a8893;        /* azul dessaturado p/ texto secundario */
+  --ls-border: #e6dcc8;       /* borda derivada da areia */
 
   .form-container {
     position: relative;
@@ -189,9 +166,9 @@ const StyledWrapper = styled.div`
   .title {
     text-align: center;
     margin: 0 0 22px 0;
-    font-size: 21px;
-    font-weight: 700;
-    color: var(--ls-ink);
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--ls-blue);
   }
 
   .form {
