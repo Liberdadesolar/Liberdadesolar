@@ -3,7 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Liberdade Solar — Login</title>
+  <title>Login</title>
+
+  <!-- =====================================================
+    CONFIGURAR ANTES DE USAR:
+    1. PB_URL  — URL do seu PocketBase
+    2. REDIRECT_URL — página após login bem-sucedido
+  ====================================================== -->
+  <script>
+    const PB_URL = 'https://SEU_POCKETBASE_URL';
+    const REDIRECT_URL = '/dashboard';
+  </script>
+  <script src="https://cdn.jsdelivr.net/gh/pocketbase/js-sdk@master/dist/pocketbase.umd.js"></script>
+
   <style>
     body {
       min-height: 100vh;
@@ -16,7 +28,7 @@
     /* From Uiverse.io by akshat-patel28 */
     .form-container {
       width: 350px;
-      height: 500px;
+      min-height: 500px;
       background-color: #fff;
       box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
       border-radius: 10px;
@@ -86,6 +98,21 @@
       box-shadow: none;
     }
 
+    .form-btn:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+
+    .error-msg {
+      color: #e53e3e;
+      font-size: 0.8rem;
+      text-align: center;
+      min-height: 1.2em;
+      margin: 0;
+      font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+            "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+    }
+
     .sign-up-label {
       margin: 0;
       font-size: 10px;
@@ -153,13 +180,14 @@
   <!-- From Uiverse.io by akshat-patel28 -->
   <div class="form-container">
     <p class="title">Welcome back</p>
-    <form class="form">
-      <input type="email" class="input" placeholder="Email">
-      <input type="password" class="input" placeholder="Password">
+    <form class="form" id="login-form">
+      <input type="email" class="input" id="email-input" placeholder="Email" required>
+      <input type="password" class="input" id="password-input" placeholder="Password" required>
       <p class="page-link">
         <span class="page-link-label">Forgot Password?</span>
       </p>
-      <button class="form-btn">Log in</button>
+      <button class="form-btn" id="login-btn">Log in</button>
+      <p id="error-msg" class="error-msg"></p>
     </form>
     <p class="sign-up-label">
       Don't have an account?<span class="sign-up-link">Sign up</span>
@@ -182,5 +210,30 @@
       </div>
     </div>
   </div>
+
+  <script>
+    const pb = new PocketBase(PB_URL);
+    const form = document.getElementById('login-form');
+    const btn = document.getElementById('login-btn');
+    const errorMsg = document.getElementById('error-msg');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      btn.disabled = true;
+      btn.textContent = 'Entrando...';
+      errorMsg.textContent = '';
+      try {
+        await pb.collection('users').authWithPassword(
+          document.getElementById('email-input').value,
+          document.getElementById('password-input').value
+        );
+        window.location.href = REDIRECT_URL;
+      } catch (err) {
+        errorMsg.textContent = 'Email ou senha inválidos.';
+        btn.disabled = false;
+        btn.textContent = 'Log in';
+      }
+    });
+  </script>
 </body>
 </html>
