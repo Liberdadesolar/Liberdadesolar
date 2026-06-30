@@ -75,8 +75,10 @@ const VerifyEmail = ({ email }) => {
 
         <h1 className="title">Verifique seu e-mail</h1>
         <p className="subtitle">
-          Enviamos um link de recuperação para{' '}
-          <span className="email">{email || 'o seu e-mail'}</span>. Abra a mensagem e clique no link para criar uma nova senha.
+          Enviamos um link de recuperação para<br />
+          <span className="email">{email || 'o seu e-mail'}</span><br />
+          Abra a mensagem e clique no link<br />
+          para criar a sua nova senha.
         </p>
         <p className="hint">Não recebeu? Confira a caixa de spam.</p>
 
