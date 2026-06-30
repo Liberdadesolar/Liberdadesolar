@@ -1,18 +1,56 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import { pb } from '../lib/pb';
+
+const REDIRECT_URL = import.meta.env.VITE_REDIRECT_URL || '/dashboard';
 
 const LoginForm = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError('');
+    try {
+      await pb.collection('users').authWithPassword(email, password);
+      window.location.href = REDIRECT_URL;
+    } catch (err) {
+      setError('Email ou senha inválidos.');
+      setLoading(false);
+    }
+  };
+
   return (
     <StyledWrapper>
       <div className="form-container">
         <p className="title">Welcome back</p>
-        <form className="form">
-          <input type="email" className="input" placeholder="Email" />
-          <input type="password" className="input" placeholder="Password" />
+        <form className="form" onSubmit={handleSubmit}>
+          <input
+            type="email"
+            className="input"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <input
+            type="password"
+            className="input"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
           <p className="page-link">
             <span className="page-link-label">Forgot Password?</span>
           </p>
-          <button className="form-btn">Log in</button>
+          <button className="form-btn" type="submit" disabled={loading}>
+            {loading ? 'Entrando...' : 'Log in'}
+          </button>
+          <p className="error-msg">{error}</p>
         </form>
         <p className="sign-up-label">
           Don't have an account?<span className="sign-up-link">Sign up</span>
@@ -42,7 +80,7 @@ const LoginForm = () => {
 const StyledWrapper = styled.div`
   .form-container {
     width: 350px;
-    height: 500px;
+    min-height: 500px;
     background-color: #fff;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     border-radius: 10px;
@@ -110,6 +148,21 @@ const StyledWrapper = styled.div`
 
   .form-btn:active {
     box-shadow: none;
+  }
+
+  .form-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+
+  .error-msg {
+    color: #e53e3e;
+    font-size: 0.8rem;
+    text-align: center;
+    min-height: 1.2em;
+    margin: 0;
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+          "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   }
 
   .sign-up-label {
